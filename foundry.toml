@@ -10,4 +10,10 @@ remappings = [
     "forge-std/=lib/forge-std/src/"
 ]
 
+[rpc_endpoints]
+# Sepolia testnet RPC URL
+# 環境変数 SEPOLIA_RPC_URL が設定されている場合はそちらが優先されます
+# 無料のパブリックRPCを使用（レート制限がある可能性があります）
+sepolia = "${SEPOLIA_RPC_URL:-https://rpc.sepolia.org}"
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

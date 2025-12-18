@@ -50,7 +50,14 @@ contract FrimaNFT is ERC721, ERC721URIStorage, Ownable {
             msg.sender == from || msg.sender == frimaMarketplace,
             "Transfer restricted to Owner or Marketplace."
         );
-        super.transferFrom(from, to, tokenId);
+        
+        // マーケットプレイスからの呼び出しの場合は、承認チェックをスキップして直接転送
+        if (msg.sender == frimaMarketplace) {
+            _transfer(from, to, tokenId);
+        } else {
+            // 所有者からの呼び出しの場合は、通常の承認チェックを行う
+            super.transferFrom(from, to, tokenId);
+        }
     }
 
     // Required overrides
